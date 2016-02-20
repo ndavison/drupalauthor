@@ -1,0 +1,27 @@
+{
+  "name": "drupalauthor",
+  "version": "0.1.0",
+  "description": "A headless Drupal 8 UI for writing and editing content.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nathan Davison",
+  "license": "MIT",
+  "dependencies": {
+    "angular2": "~2.0.0-beta.6",
+    "es6-promise": "~3.1.2",
+    "es6-shim": "~0.33.13",
+    "jquery": "~2.2.0",
+    "lodash": "^4.5.0",
+    "materialize-css": "~0.97.5",
+    "reflect-metadata": "~0.1.2",
+    "rxjs": "~5.0.0-beta.0",
+    "systemjs": "~0.19.22",
+    "zone.js": "~0.5.14"
+  },
+  "devDependencies": {
+    "typescript": "~1.7.5",
+    "typings": "~0.6.8"
+  }
+}
