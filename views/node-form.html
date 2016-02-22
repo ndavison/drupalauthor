@@ -1,0 +1,12 @@
+<div class="col s6">
+  <h4>Create a {{bundle}}</h4>
+  <form #nodeForm="ngForm" (submit)="onSubmit($event)">
+    <div class="row">
+      <input id="title" type="text" [(ngModel)]="node.title" required>
+      <label for="title">Title</label>
+    </div>
+    <div class="row">
+      <button class="btn" type="submit" name="save">Save</button>
+    </div>
+  </form>
+</div>

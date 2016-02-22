@@ -10,19 +10,15 @@ import {NgForm} from 'angular2/common';
 import {DrupalService} from './drupal.service';
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './views/login.html'
+	selector: 'app-logout',
+	templateUrl: './views/logout.html'
 })
-export class LoginComponent {
-
-	public username: string;
-	public password: string;
-	public loginForm: NgForm;
+export class LogoutComponent {
 
 	constructor(private _drupal: DrupalService) {}
 
-	onSubmit(ev: any): void {
+	onClick(ev: any): void {
 		ev.preventDefault();
-		this._drupal.authenticate(this.username, this.password);
+		this._drupal.logout();
 	};
 };
