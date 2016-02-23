@@ -1,6 +1,9 @@
+import {Field} from './field';
 
 export interface Node {
 	nid?: number,
-	status: number,
-	title: string
+	_links?: Object,
+	type: any,
+	title: Field[],
+	body?: Field[]
 }

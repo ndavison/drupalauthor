@@ -1,8 +1,8 @@
 <div class="col s6">
-  <h4>Create a {{bundle}}</h4>
+  <h5>Create a <span class="teal-text text-accent-4">{{bundle}}</span></h5>
   <form #nodeForm="ngForm" (submit)="onSubmit($event)">
     <div class="row">
-      <input id="title" type="text" [(ngModel)]="node.title" required>
+      <input id="title" type="text" [(ngModel)]="node.title[0].value" required>
       <label for="title">Title</label>
     </div>
     <div class="row">

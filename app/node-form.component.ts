@@ -10,6 +10,7 @@ import {NgForm} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
 import {DrupalService} from './drupal.service';
 import {Node} from './node';
+import {Field} from './field';
 
 @Component({
 	selector: 'app-node-form',
@@ -17,7 +18,7 @@ import {Node} from './node';
 })
 export class NodeFormComponent {
 
-	public node: Node = {title: '', status: 0};
+	public node: Node = {title: [{'value': ''}], type: ''};
 	public nodeForm: NgForm;
 	public bundle: string;
 	public fields;
@@ -31,5 +32,6 @@ export class NodeFormComponent {
 
 	onSubmit(ev: any): void {
 		ev.preventDefault();
+		this._drupal.saveNode(this.node, this.bundle).then(res => console.log(res));
 	};
 };
