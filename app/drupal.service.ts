@@ -13,10 +13,10 @@ import {Node} from './node';
 @Injectable()
 export class DrupalService {
 
-	constructor(private _http: Http, private config: Config) {}
+	constructor(private _http: Http, private _config: Config) {}
 
 	getToken() {
-		return this._http.post(this.config.drupalRoot + 'rest/session/token', '').toPromise().then(res => res.text());
+		return this._http.post(this._config.drupalRoot + 'rest/session/token', '').toPromise().then(res => res.text());
 	}
 
 	private _makeGetWithToken(url: string): Promise<Object> {
@@ -24,7 +24,7 @@ export class DrupalService {
 				.then(token => {
 					var headers = new Headers();
 					headers = this._addTokenToHeader(token, headers);
-					return this._http.get(this.config.drupalRoot + url, {headers: headers}).toPromise();
+					return this._http.get(this._config.drupalRoot + url, {headers: headers}).toPromise();
 				})
 				.then(res => res.json());
 	}
@@ -39,7 +39,7 @@ export class DrupalService {
 						headers.append('Content-type', 'application/hal+json');
 						headers.append('Authorization', 'Basic YWRtaW46YWRtaW4=');
 					}
-					return this._http.post(this.config.drupalRoot + url, body, {headers: headers}).toPromise();
+					return this._http.post(this._config.drupalRoot + url, body, {headers: headers}).toPromise();
 				})
 				.then(res => {
 					if (res.totalBytes > 0) {
@@ -68,18 +68,18 @@ export class DrupalService {
 		if (node.nid) {
 			url += '/' + node.nid;
 		}
-		node._links = {"type": {"href": this.config.drupalRoot + 'rest/type/node/' + bundle}};
+		node._links = {"type": {"href": this._config.drupalRoot + 'rest/type/node/' + bundle}};
 		node.type = [{"target_id": bundle}];
 		return this._makePostWithToken(url + '?_format=hal_json', node);
 	}
 
 	deleteNode() {}
 
-	authenticate(username: string, password: string): Promise<any> {
+	authenticate(username: string, password: string): Promise<Object> {
 		return this._makePostWithToken('user/login', 'user=' + username + '&pass=' + password + '&form_id=user_login_form');
 	}
 
-	logout(): Promise<any> {
+	logout(): Promise<Object> {
 		return this._makePostWithToken('user/logout');
 	}
 
